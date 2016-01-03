@@ -1,0 +1,19 @@
+
+------------------------------------------------------------------------------------
+--- testing
+------------------------------------------------------------------------------------
+
+Erster Versuch: Mocha, evtl. + Sinon
+
+http://mochajs.org
+http://sinonjs.org
+
+------------------------------------------------------------------------------------
+--- modules
+------------------------------------------------------------------------------------
+
+Bester Ansatz ist AMD (asynchronous module definition), zweitbester das "Module Pattern"
+(ungefähr so wie ich es bis jetzt eh schon gemacht habe). CommonJS ist im Browser nicht
+zu gebrauchen, da es keine Möglichkeit gibt, Race Conditions zu vermeiden.
+
+RequireJS ist eine Implementierung von AMD. curl.js war eine andere, aber ist deprecated.
