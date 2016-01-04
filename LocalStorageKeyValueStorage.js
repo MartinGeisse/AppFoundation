@@ -1,11 +1,8 @@
 
 /**
- * Stores string values in local storage, prepending the specified prefix
- * before each key.
- * 
- * @param prefix the prefix to prepend to each key
+ * Stores string values in local storage.
  */
-function LocalStorageKeyValueStorage(prefix) {
+function LocalStorageKeyValueStorage() {
 	
 	//
 	// helpers
@@ -33,20 +30,20 @@ function LocalStorageKeyValueStorage(prefix) {
 		if (typeof value != 'string') {
 			throw 'this storage can only store string values, found: ' + (typeof value);
 		}
-		localStorage.setItem(prefix + key, value);
+		localStorage.setItem(key, value);
 		done(callback);
 	}
 	
 	this.get = function(key, callback) {
-		doneWith(callback, localStorage.getItem(prefix + key));
+		doneWith(callback, localStorage.getItem(key));
 	}
 	
 	this.exists = function(key, callback) {
-		doneWith(callback, localStorage.getItem(prefix + key) !== null);
+		doneWith(callback, localStorage.getItem(key) !== null);
 	}
 	
 	this.remove = function(key, callback) {
-		localStorage.removeItem(prefix + key);
+		localStorage.removeItem(key);
 		done(callback);
 	}
 	
