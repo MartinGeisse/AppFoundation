@@ -4,6 +4,10 @@
  */
 InMemoryKeyValueStorage = function() {
 	
+	//
+	// helpers
+	//
+	
 	var data = {};
 	
 	function done(callback) {
@@ -15,6 +19,10 @@ InMemoryKeyValueStorage = function() {
 			callback(value);
 		}, 0);
 	}
+	
+	//
+	// actual functionality
+	//
 	
 	this.set = function(key, value, callback) {
 		if (typeof value != 'string') {

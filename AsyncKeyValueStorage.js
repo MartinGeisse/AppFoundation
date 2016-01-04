@@ -12,6 +12,10 @@
  */
 AsyncKeyValueStorage = function(storage) {
 
+	//
+	// helpers
+	//
+	
 	var queues = {};
 
 	function work(key, unit) {
@@ -34,6 +38,10 @@ AsyncKeyValueStorage = function(storage) {
 			work(key, unit);
 		}
 	}
+	
+	//
+	// actual functionality
+	//
 	
 	this.set = function(key, value, callback) {
 		enqueue(key, function(furtherWork) {
