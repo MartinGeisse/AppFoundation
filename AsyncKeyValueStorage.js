@@ -6,11 +6,11 @@
  * the same key is still in progress.
  * 
  * This storage doesn't impose any restriction on stored values, but inherits
- * any restrictions from the wrapped storage.
+ * any restrictions from the underlying engine.
  * 
- * @param storage the wrapped storage
+ * @param engine the underlying engine
  */
-AsyncKeyValueStorage = function(storage) {
+AsyncKeyValueStorage = function(engine) {
 
 	//
 	// helpers
@@ -45,36 +45,33 @@ AsyncKeyValueStorage = function(storage) {
 	
 	this.set = function(key, value, callback) {
 		enqueue(key, function(furtherWork) {
-			storage.set(key, value, function() {
+			engine.set(key, value, function() {
 				furtherWork();
-				callback();
+				if (callback) {
+					callback();
+				}
 			});
 		});
 	}
 	
 	this.get = function(key, callback) {
 		enqueue(key, function(furtherWork) {
-			storage.get(key, function(value) {
+			engine.get(key, function(value) {
 				furtherWork();
-				callback(value);
-			});
-		});
-	}
-	
-	this.exists = function(key, callback) {
-		enqueue(key, function(furtherWork) {
-			storage.exists(key, function(result) {
-				furtherWork();
-				callback(result);
+				if (callback) {
+					callback(value);
+				}
 			});
 		});
 	}
 	
 	this.remove = function(key, callback) {
 		enqueue(key, function(furtherWork) {
-			storage.remove(key, function() {
+			engine.remove(key, function() {
 				furtherWork();
-				callback();
+				if (callback) {
+					callback();
+				}
 			});
 		});
 	}

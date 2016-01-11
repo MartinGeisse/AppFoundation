@@ -38,10 +38,6 @@ function LocalStorageKeyValueStorage() {
 		doneWith(callback, localStorage.getItem(key));
 	}
 	
-	this.exists = function(key, callback) {
-		doneWith(callback, localStorage.getItem(key) !== null);
-	}
-	
 	this.remove = function(key, callback) {
 		localStorage.removeItem(key);
 		done(callback);

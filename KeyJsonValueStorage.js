@@ -12,12 +12,10 @@ KeyJsonValueStorage = function(storage) {
 	
 	this.get = function(key, callback) {
 		storage.get(key, function(encoded) {
-			callback(JSON.parse(encoded));
+			if (callback) {
+				callback(JSON.parse(encoded));
+			}
 		});
-	}
-	
-	this.exists = function(key, callback) {
-		storage.exists(key, callback);
 	}
 	
 	this.remove = function(key, callback) {

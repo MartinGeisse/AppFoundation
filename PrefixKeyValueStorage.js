@@ -15,10 +15,6 @@ PrefixKeyValueStorage = function(storage, prefix) {
 		storage.get(prefix + key, callback);
 	}
 	
-	this.exists = function(key, callback) {
-		storage.exists(prefix + key, callback);
-	}
-	
 	this.remove = function(key, callback) {
 		storage.remove(prefix + key, callback);
 	}
